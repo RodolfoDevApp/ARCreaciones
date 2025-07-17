@@ -1,1 +1,44 @@
 /* You can add global styles to this file, and also import other style files */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+background: #9a1a65a8;
+color: #f0f0f0;
+}
+
+
+.sidebar {
+  width: 100%;
+  height: calc(100vh - 64px);
+  transition: ease-in;
+  position: absolute;
+  background-color: rgb(240, 242, 244);
+}
+
+.sidebar.collapsed {
+  width: 0;
+  overflow: hidden;
+}
+
+.content {
+  padding: 40px 80px;
+  min-height: calc(100vh - 64px);
+  @media (max-width: 767px) {
+    padding: 20px 16px;
+  }
+}

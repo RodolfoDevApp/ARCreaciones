@@ -1,0 +1,83 @@
+.shop-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 0 16px;
+
+  @media (min-width: 768px) {
+    padding: 0 80px;
+  }
+}
+
+.filters {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.filter-category {
+  width: 100%; // por defecto: móvil
+
+  @media (min-width: 768px) {
+    width: 50%; // tablet
+  }
+
+  @media (min-width: 1024px) {
+    width: 250px; // o lo que quieras en escritorio
+  }
+}
+
+.filter-search {
+  flex: 1;
+}
+
+.product-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(4, 1fr); // base: móvil
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(6, 1fr); // tablet
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(8, 1fr); // desktop
+  }
+
+  app-card-shop {
+    grid-column: span 4; // móvil: ocupa todas
+
+    @media (min-width: 768px) {
+      grid-column: span 3; // tablet: ocupa 3 de 6
+    }
+
+    @media (min-width: 1024px) {
+      grid-column: span 2; // desktop: ocupa 2 de 8
+    }
+  }
+
+  
+}
+.no-results {
+display: flex;
+flex-direction: column;
+background: rgb(251 222 239);
+
+align-items: center;
+justify-content: center;
+padding: 3rem;
+text-align: center;
+    color: #444;
+font-style: italic;
+}
+
+.no-results img {
+width: 120px;
+opacity: 0.6;
+margin-bottom: 1rem;
+}

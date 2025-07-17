@@ -1,0 +1,35 @@
+<mat-toolbar color="primary" class="toolbar">
+  <!-- ☰ Menú hamburguesa solo en móvil -->
+  <button mat-icon-button (click)="toggle.emit()" class="hidde-tags">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+AR Creaciones
+
+
+  <!-- 🧭 Navegación central -->
+  <div class="nav-links">
+    <a mat-button routerLink="/">
+      <mat-icon>home</mat-icon>
+      Inicio
+    </a>
+    <a mat-button routerLink="/store">
+      <mat-icon>inventory_2</mat-icon>
+      Productos
+    </a>
+    <a class="cart-badge" mat-button routerLink="/cart">
+      <mat-icon>shopping_cart</mat-icon>
+      <span class="badge" *ngIf="(cartCount$ | async) as count">{{ count }}</span>
+
+      Carrito
+    </a>
+  </div>
+
+  <span class="spacer hidde-tags"></span>
+<div></div>
+  <!-- 👤 Login -->
+  <!-- <button mat-button routerLink="/login" style="width: 7em;" >
+    <mat-icon >person</mat-icon>
+    Login
+  </button> -->
+</mat-toolbar>

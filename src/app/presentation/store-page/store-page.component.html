@@ -1,0 +1,40 @@
+<div class="shop-container">
+    <!-- Filtros -->
+    <div class="filters">
+        <mat-form-field appearance="fill" class="filter-category">
+            <mat-label>Categoría</mat-label>
+            <mat-select (selectionChange)="onCategoryChange($event.value)">
+                <mat-option [value]="null">Todas</mat-option>
+                <mat-option *ngFor="let cat of categories$ | async" [value]="cat.id">
+                    {{ cat.name }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="filter-search">
+            <mat-label>Buscar producto</mat-label>
+            <input #searchInput matInput placeholder="Introduce el producto a buscar"
+                (input)="onSearch(searchInput.value)" />
+
+        </mat-form-field>
+    </div>
+
+    <!-- Productos -->
+    <div *ngIf="paginatedProducts$ | async as products">
+        <div class="product-grid" *ngIf="products.length > 0; else noResults">
+            <app-card-shop *ngFor="let product of products" [product]="product" />
+        </div>
+    </div>
+
+    <ng-template #noResults>
+        <div class="no-results">
+            <img src="assets/imgs/empty-box.png" alt="Sin productos" />
+            <p>No hay productos que coincidan con tu búsqueda o filtros.</p>
+        </div>
+    </ng-template>
+
+    <!-- Paginador -->
+    <mat-paginator [length]="totalItems" [pageSizeOptions]="pageSizeOptions" [pageSize]="12" showFirstLastButtons
+        (page)="onPageChange($event)">
+    </mat-paginator>
+</div>
