@@ -8,25 +8,22 @@ AR Creaciones
 
 
   <!-- 🧭 Navegación central -->
-  <div class="nav-links">
-    <a mat-button routerLink="/">
-      <mat-icon>home</mat-icon>
-      Inicio
-    </a>
-    <a mat-button routerLink="/store">
-      <mat-icon>inventory_2</mat-icon>
-      Productos
-    </a>
-    <a class="cart-badge" mat-button routerLink="/cart">
-      <mat-icon>shopping_cart</mat-icon>
-      <span class="badge" *ngIf="(cartCount$ | async) as count">{{ count }}</span>
+ <div class="nav-links">
+  <a mat-button routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+    <mat-icon>home</mat-icon>
+    Inicio
+  </a>
+  <a mat-button routerLink="/store" routerLinkActive="active">
+    <mat-icon>inventory_2</mat-icon>
+    Productos
+  </a>
+  <a class="cart-badge" mat-button routerLink="/cart" routerLinkActive="active">
+    <mat-icon>shopping_cart</mat-icon>
+    <span class="badge" *ngIf="(cartCount$ | async) as count">{{ count }}</span>
+    Carrito
+  </a>
+</div>
 
-      Carrito
-    </a>
-  </div>
-
-  <span class="spacer hidde-tags"></span>
-<div></div>
   <!-- 👤 Login -->
   <!-- <button mat-button routerLink="/login" style="width: 7em;" >
     <mat-icon >person</mat-icon>

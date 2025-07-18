@@ -79,67 +79,70 @@
   </div>
 </div>
 
-<!-- Contenido oculto para el PDF -->
-<div id="receipt-content" style="display: none; position: relative; padding: 0 20px 20px 20px; font-family: Arial, sans-serif;height: 2000px;color: black;">
-  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px;">
-    <img src="assets/logo-ar-creaciones.png" alt="AR Creaciones" style="height: 160px;" />
-    <div style="width: 20%;display: flex; flex-direction: column;flex-wrap: nowrap;font-size: 20px;">
-      <p style="margin: 0;"><strong>Factura N°:</strong> {{ '00001' }}</p>
-      <p style="margin: 0;"><strong>Fecha:</strong> {{ today }}</p>
-    </div>
-  </div>
-
-  <h2 style="text-align: center; margin-bottom: 10px;">Nota de venta</h2>
-  <hr />
-
-  <h3 style="margin-top: 20px;font-size: 20px;">Productos</h3>
-  <table style="width: 100%; border-collapse: collapse; font-size: 20px;">
-    <thead>
-      <tr>
-        <th style="border: 1px solid #ccc; padding: 5px;">Nombre</th>
-        <th style="border: 1px solid #ccc; padding: 5px;">Cantidad</th>
-        <th style="border: 1px solid #ccc; padding: 5px;">Precio</th>
-        <th style="border: 1px solid #ccc; padding: 5px;">Subtotal</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let product of products$ | async">
-        <td style="border: 1px solid #ccc; padding: 5px;">{{ product.name }}</td>
-        <td style="border: 1px solid #ccc; padding: 5px;">{{ product.quantity }} paquete(s)</td>
-        <td style="border: 1px solid #ccc; padding: 5px;">{{ product.pricePerPackage | currency }}</td>
-        <td style="border: 1px solid #ccc; padding: 5px;">{{ product.quantity * product.pricePerPackage | currency }}</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <ng-container *ngIf="courses$ | async as courses">
-  <ng-container *ngIf="courses.length > 0">
-    <h3 style="margin-top: 30px; font-size: 20px;">Cursos</h3>
-    <table style="width: 100%; border-collapse: collapse; font-size: 20px;">
-      <thead>
-        <tr>
-          <th style="border: 1px solid #ccc; padding: 5px;">Curso</th>
-          <th style="border: 1px solid #ccc; padding: 5px;">Precio</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let course of courses">
-          <td style="border: 1px solid #ccc; padding: 5px;">{{ course.title }}</td>
-          <td style="border: 1px solid #ccc; padding: 5px;">{{ course.price | currency }}</td>
-        </tr>
-      </tbody>
-    </table>
-  </ng-container>
-</ng-container>
-
-
-  <hr style="margin-top: 30px;" />
-  <div style="text-align: right; font-size: 20px;">
-    <p><strong>Total:</strong> {{ total$ | async | currency }}</p>
-  </div>
-  <footer  style="position: absolute; display: flex; flex-direction: column; width: 100%; justify-content: center;align-items: center;bottom: 0; right: 0;top: 1900px;font-size: 20px;">
-    <p style="display: flex; width: 100%;justify-content: center;align-items: center;"><strong>Contacto:</strong> {{'AR@mailto.com'}}</p>
-    <p style="display: flex; width: 100%;justify-content: center;align-items: center;"><strong>Dirección:</strong> {{'ekatepunk, aguas que aqui matan'}}</p>
-    <p style="display: flex; width: 100%;justify-content: center;align-items: center;"><strong>Telefono:</strong> {{'777-777-777'}}</p>
-  </footer>
+<!-- Contenido para el PDF -->
+ <div #pdfContent class="recibo-pdf" style="position: absolute; top: -9999px; width: 800px;">
+  
+   <div id="receipt-content" style="position: relative; padding: 0 20px 20px 20px; font-family: Arial, sans-serif;color: black;min-height: 1500px;">
+     <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px;">
+       <img src="assets/logo-ar-creaciones.png" alt="AR Creaciones" style="height: 160px;" />
+       <div style="width: 30%;display: flex; flex-direction: column;flex-wrap: nowrap;font-size: 20px;">
+         <p style="margin: 0;"><strong>Factura N°:</strong> {{ '00001' }}</p>
+         <p style="margin: 0;"><strong>Fecha:</strong> {{ today }}</p>
+       </div>
+     </div>
+   
+     <h2 style="text-align: center; margin-bottom: 10px;">Nota de venta</h2>
+     <hr />
+   
+     <h3 style="margin-top: 20px;font-size: 20px;">Productos</h3>
+     <table style="width: 100%; border-collapse: collapse; font-size: 20px;">
+       <thead>
+         <tr>
+           <th style="border: 1px solid #ccc; padding: 5px;">Nombre</th>
+           <th style="border: 1px solid #ccc; padding: 5px;">Cantidad</th>
+           <th style="border: 1px solid #ccc; padding: 5px;">Precio</th>
+           <th style="border: 1px solid #ccc; padding: 5px;">Subtotal</th>
+         </tr>
+       </thead>
+       <tbody>
+         <tr *ngFor="let product of products$ | async">
+           <td style="border: 1px solid #ccc; padding: 5px;">{{ product.name }}</td>
+           <td style="border: 1px solid #ccc; padding: 5px;">{{ product.quantity }} paquete(s)</td>
+           <td style="border: 1px solid #ccc; padding: 5px;">{{ product.pricePerPackage | currency }}</td>
+           <td style="border: 1px solid #ccc; padding: 5px;">{{ product.quantity * product.pricePerPackage | currency }}</td>
+         </tr>
+       </tbody>
+     </table>
+   
+     <ng-container *ngIf="courses$ | async as courses">
+     <ng-container *ngIf="courses.length > 0">
+       <h3 style="margin-top: 30px; font-size: 20px;">Cursos</h3>
+       <table style="width: 100%; border-collapse: collapse; font-size: 20px;">
+         <thead>
+           <tr>
+             <th style="border: 1px solid #ccc; padding: 5px;">Curso</th>
+             <th style="border: 1px solid #ccc; padding: 5px;">Precio</th>
+           </tr>
+         </thead>
+         <tbody>
+           <tr *ngFor="let course of courses">
+             <td style="border: 1px solid #ccc; padding: 5px;">{{ course.title }}</td>
+             <td style="border: 1px solid #ccc; padding: 5px;">{{ course.price | currency }}</td>
+           </tr>
+         </tbody>
+       </table>
+     </ng-container>
+   </ng-container>
+   
+   
+     <hr style="margin-top: 30px;" />
+     <div style="text-align: right; font-size: 20px;">
+       <p><strong>Total:</strong> {{ total$ | async | currency }}</p>
+     </div>
+     <footer  style="position: absolute; display: flex; flex-direction: column; width: 100%; justify-content: center;align-items: center;bottom: 0;top: 700px; right: 0;font-size: 20px;">
+       <p style="display: flex; width: 100%;justify-content: center;align-items: center;"><strong>Contacto:</strong> {{'AR@mailto.com'}}</p>
+       <p style="display: flex; width: 100%;justify-content: center;align-items: center;"><strong>Dirección:</strong> {{'ekatepunk, aguas que aqui matan'}}</p>
+       <p style="display: flex; width: 100%;justify-content: center;align-items: center;"><strong>Telefono:</strong> {{'777-777-777'}}</p>
+     </footer>
+   </div>
 </div>

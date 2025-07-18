@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'side-header',
@@ -7,10 +7,15 @@ import { Component, Input } from '@angular/core';
 })
 export class SideHeaderComponent {
  @Input() open = true;
+ @Output() closed = new EventEmitter<void>();
 
   links = [
   { label: 'Inicio', path: '/', icon: 'home' },
-  { label: 'Productos', path: '/products', icon: 'inventory_2' },
+  { label: 'Productos', path: '/store', icon: 'inventory_2' },
   { label: 'Carrito', path: '/cart', icon: 'shopping_cart' },
 ];
+
+onLinkClick() {
+    this.closed.emit();
+  }
 }

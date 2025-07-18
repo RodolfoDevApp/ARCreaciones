@@ -1,7 +1,7 @@
 <app-header (toggle)="toggleSidebar()"></app-header>
 <app-loading-overlay *ngIf="loading$ | async" />
 <div>
-  <side-header [open]="isSidenavOpen"></side-header>
+  <side-header [open]="isSidenavOpen" (closed)="closeSidebar()"></side-header>
 
   <main class="content">
     <router-outlet></router-outlet>

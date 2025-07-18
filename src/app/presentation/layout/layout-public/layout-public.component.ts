@@ -15,4 +15,9 @@ loading$ = this.loadingService.loading$;
   toggleSidebar() {
     this.isSidenavOpen = !this.isSidenavOpen;
   }
+  closeSidebar() {
+    console.log('entra?');
+    this.isSidenavOpen = true;
+  }
+  
 }

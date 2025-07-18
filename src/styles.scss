@@ -28,6 +28,7 @@ color: #f0f0f0;
   transition: ease-in;
   position: absolute;
   background-color: rgb(240, 242, 244);
+  z-index: 999;
 }
 
 .sidebar.collapsed {
